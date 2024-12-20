@@ -1,5 +1,10 @@
-import{ test } from "@playwright/test"
+import { test } from "@playwright/test"
 import { SignUp } from "../pages/signUp";
+
+function generateRandomEmail(): string {
+    const randomString = Math.random().toString(36).substring(2, 10); 
+    return `testuser_${randomString}@test.com`;
+}
 
 test.describe('check sign up page and registration', async()=>{
 
@@ -24,9 +29,10 @@ test.describe('check sign up page and registration', async()=>{
         await signUp.checkDisableSignUpButton();
     })
 
-    test('fill values Sign Up form and get success flow', async()=>{
-
-        await signUp.fillValuesSignUpForm('Artem', 'testacc11@test.net', 'Password123!', 'Password123!', true, true); // потрібно кожен раз змінювати імейл для успішної реєстрації
+    test('fill values Sign Up form and get success flow with random email', async()=>{
+        const uniqueEmail = generateRandomEmail();
+        console.log(`Generated email: ${uniqueEmail}`);
+        await signUp.fillValuesSignUpForm('Artem', uniqueEmail, 'Password123!', 'Password123!', true, true);
         await signUp.checkSuccessSignUpFlow();
     })
 
