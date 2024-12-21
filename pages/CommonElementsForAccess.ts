@@ -2,7 +2,7 @@ import {expect, Locator, Page} from "@playwright/test"
 
 export class CommonElementsForAccess {
 
-readonly page:Page; // может нужно будет доавить во все классы
+readonly page:Page;
 readonly commonImage:Locator;
 readonly commonTitle:Locator;
 readonly commonDescription:Locator;
